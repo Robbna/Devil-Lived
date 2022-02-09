@@ -6,15 +6,16 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //_______ Variables expuestas en el editor _______
+    //Variables expuestas en el editor
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
-    //_______ Variables para instanciar _______
-    private bool isHolding;
+    //Variables para instanciar
     private Rigidbody2D rg;
     private SpriteRenderer spr;
     private Animator playerAnimator;
-    //_______ Variables normales _______
+    [SerializeField] private Transform attackObj;
+    //Variables necesarias para el PlayerMovement
+    private bool isHolding;
     private float dirX, dirY;
     // ---------------
     //      Start
@@ -31,26 +32,28 @@ public class PlayerMovement : MonoBehaviour
     // ----------------
     private void Update()
     {
-        //_______ Si el jugador se mueve a la derecha _______
+
+        //Si el jugador se mueve a la derecha
         if (dirX > 0f)
         {
             spr.flipX = false;
             RunAnimation(true);
         }
-        //_______ Si el jugador se mueve a la izquierda _______
+        //Si el jugador se mueve a la izquierda
         else if (dirX < 0f)
         {
             spr.flipX = true;
             RunAnimation(true);
         }
-        //_______ Si el jugador está quieto _______
+        //Si el jugador está quieto
         else
         {
             RunAnimation(false);
         }
 
-        //********//********//******** CONDICIONALES
-        //_______ Si el jugador está tocando el suelo _______
+        //***CONDICIONES
+
+        //Si el jugador está tocando el suelo
         if (mCheckGround.isGrounded == false)
         {
             RunAnimation(false);
@@ -61,13 +64,13 @@ public class PlayerMovement : MonoBehaviour
             JumpAnimation(false);
         }
 
-        //********//********//******** INPUT 
+        //***INPUT
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Attack();
+            Jump();
         }
 
-        //********//********//******** MOVIMIENTO DEL JUGADOR
+        //***MOVIMIENTO DEL JUGADOR
         if (mButtonManager.isHolding && mButtonManager.direction.Equals("left"))
         {
             dirX = -1.0f;
@@ -82,8 +85,6 @@ public class PlayerMovement : MonoBehaviour
         {
             dirX = 0.0f;
         }
-
-        print(dirX);
     }
     // ---------------------------------------------------------------
     //      Fixed Update, funcionamiento correcto de las físicas
@@ -95,19 +96,17 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
     }
-    // ---------------------
-    //      Fixed Update
-    // ---------------------
-    //********//********//******** MÉTODOS PARA LAS ACCIONES
-
+    // -----------------
+    //      Métodos
+    // -----------------
     public void ButtonPressed(bool isPressed)
     {
-        //_______ Si el jugador está presionando el botón, "isHolding" es true _______
+        //Si el jugador está presionando el botón, "isHolding" es true
         if (isPressed)
         {
             mButtonManager.isHolding = true;
         }
-        //_______ Cuando lo suelta es false _______
+        //Cuando lo suelta es false
         else
         {
             mButtonManager.isHolding = false;
@@ -115,12 +114,12 @@ public class PlayerMovement : MonoBehaviour
     }
     public void ButtonDirection(string direction)
     {
-        //_______ Si el jugador está presionando el botón izquierdo, "direction" es "left" _______
+        //Si el jugador está presionando el botón izquierdo, "direction" es "left"
         if (direction.Equals("left"))
         {
             mButtonManager.direction = "left";
         }
-        //_______ Si el jugador está presionando el botón derecho, "direction" es "right" _______
+        //Si el jugador está presionando el botón derecho, "direction" es "right"
         if (direction.Equals("right"))
         {
             mButtonManager.direction = "right";
@@ -136,9 +135,17 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Attack()
     {
+        if (spr.flipX == false)
+        {
+            attackObj.localPosition = new Vector2(1.03f, 0);
+        }
+        if (spr.flipX)
+        {
+            attackObj.localPosition = new Vector2(-1.03f, 0);
+        }
         AttackAnimation();
     }
-    //********//********//******** MÉTODOS PARA LAS ANIMACIONES
+    //***METODO PARA LAS ANIMACIONES
     private void RunAnimation(bool b)
     {
         playerAnimator.SetBool("isRunning", b);
