@@ -13,7 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator playerAnimator;
     //_______ Variables normales _______
     private float dirX, dirY;
-
+    // ---------------
+    //      Start
+    // ---------------
     private void Start()
     {
         speed *= Time.deltaTime;
@@ -21,7 +23,9 @@ public class PlayerMovement : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
         playerAnimator = GetComponent<Animator>();
     }
-
+    // ----------------
+    //      Update
+    // ----------------
     private void Update()
     {
         //********//********//******** MOVIMIENTO DEL JUGADOR
@@ -46,10 +50,8 @@ public class PlayerMovement : MonoBehaviour
             RunAnimation(false);
         }
 
-
-        //_______ Actualizar animaciones si el jugador ESTÁ o NO tocando el suelo _______
-
-
+        //********//********//******** CONDICIONALES
+        //_______ Si el jugador está tocando el suelo _______
         if (CheckGround.isGrounded == false)
         {
             RunAnimation(false);
@@ -60,34 +62,37 @@ public class PlayerMovement : MonoBehaviour
             JumpAnimation(false);
         }
 
+        //********//********//******** INPUT 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            print("a");
             Attack();
         }
 
     }
-
+    // ---------------------------------------------------------------
+    //      Fixed Update, funcionamiento correcto de las físicas
+    // ---------------------------------------------------------------
     private void FixedUpdate()
     {
-
-        if (Input.GetButton("Jump") && CheckGround.isGrounded)
+        if (Input.GetButton("Jump"))
         {
             Jump();
         }
     }
+    // ---------------------
+    //      Fixed Update
+    // ---------------------
     //********//********//******** MÉTODOS PARA LAS ACCIONES
     public void Jump()
     {
-        rg.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if (CheckGround.isGrounded)
+        {
+            rg.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
     }
-
     public void Attack()
     {
-
         AttackAnimation();
-
-
     }
     //********//********//******** MÉTODOS PARA LAS ANIMACIONES
     private void RunAnimation(bool b)
