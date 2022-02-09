@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
     //_______ Variables para instanciar _______
+    private bool isHolding;
     private Rigidbody2D rg;
     private SpriteRenderer spr;
     private Animator playerAnimator;
@@ -28,18 +31,14 @@ public class PlayerMovement : MonoBehaviour
     // ----------------
     private void Update()
     {
-        //********//********//******** MOVIMIENTO DEL JUGADOR
-        dirX = Input.GetAxisRaw("Horizontal") * speed;
-        transform.Translate(Vector2.right * dirX * speed);
-
         //_______ Si el jugador se mueve a la derecha _______
-        if (dirX > 0)
+        if (dirX > 0f)
         {
             spr.flipX = false;
             RunAnimation(true);
         }
         //_______ Si el jugador se mueve a la izquierda _______
-        else if (dirX < 0)
+        else if (dirX < 0f)
         {
             spr.flipX = true;
             RunAnimation(true);
@@ -52,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
         //********//********//******** CONDICIONALES
         //_______ Si el jugador está tocando el suelo _______
-        if (CheckGround.isGrounded == false)
+        if (mCheckGround.isGrounded == false)
         {
             RunAnimation(false);
             JumpAnimation(true);
@@ -68,6 +67,23 @@ public class PlayerMovement : MonoBehaviour
             Attack();
         }
 
+        //********//********//******** MOVIMIENTO DEL JUGADOR
+        if (mButtonManager.isHolding && mButtonManager.direction.Equals("left"))
+        {
+            dirX = -1.0f;
+            transform.Translate(Vector2.right * dirX * speed);
+        }
+        else if (mButtonManager.isHolding && mButtonManager.direction.Equals("right"))
+        {
+            dirX = 1.0f;
+            transform.Translate(Vector2.right * dirX * speed);
+        }
+        else
+        {
+            dirX = 0.0f;
+        }
+
+        print(dirX);
     }
     // ---------------------------------------------------------------
     //      Fixed Update, funcionamiento correcto de las físicas
@@ -83,9 +99,37 @@ public class PlayerMovement : MonoBehaviour
     //      Fixed Update
     // ---------------------
     //********//********//******** MÉTODOS PARA LAS ACCIONES
+
+    public void ButtonPressed(bool isPressed)
+    {
+        //_______ Si el jugador está presionando el botón, "isHolding" es true _______
+        if (isPressed)
+        {
+            mButtonManager.isHolding = true;
+        }
+        //_______ Cuando lo suelta es false _______
+        else
+        {
+            mButtonManager.isHolding = false;
+        }
+    }
+    public void ButtonDirection(string direction)
+    {
+        //_______ Si el jugador está presionando el botón izquierdo, "direction" es "left" _______
+        if (direction.Equals("left"))
+        {
+            mButtonManager.direction = "left";
+        }
+        //_______ Si el jugador está presionando el botón derecho, "direction" es "right" _______
+        if (direction.Equals("right"))
+        {
+            mButtonManager.direction = "right";
+        }
+    }
+
     public void Jump()
     {
-        if (CheckGround.isGrounded)
+        if (mCheckGround.isGrounded)
         {
             rg.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }

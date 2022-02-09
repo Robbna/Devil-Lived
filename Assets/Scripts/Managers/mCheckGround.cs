@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckGround : MonoBehaviour
+public class mCheckGround : MonoBehaviour
 {
     public static bool isGrounded;
     [SerializeField] private float rayDistance;
