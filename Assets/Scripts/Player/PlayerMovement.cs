@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spr;
     private Animator playerAnimator;
     [SerializeField] private Transform attackObj;
-    //Variables necesarias para el PlayerMovement
+    //Variables necesarias para PlayerMovement
     private bool isHolding;
     private float dirX, dirY;
     // ---------------
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     // ----------------
     private void Update()
     {
-
+        transform.Translate(Vector2.right * Input.GetAxisRaw("Horizontal") * speed);
         //Si el jugador se mueve a la derecha
         if (dirX > 0f)
         {

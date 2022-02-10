@@ -151,7 +151,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7422805013468276474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,5 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37330c221579874195c8318f1a40e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   goblinAnimation: {fileID: 3612124003530591082}
+  currentHealth: 100
