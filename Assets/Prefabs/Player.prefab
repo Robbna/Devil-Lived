@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2213098972862156647}
   - component: {fileID: 2213098972862156641}
   - component: {fileID: 1901039909}
+  - component: {fileID: 4051009469339311690}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -167,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a749bf8027b51d4fad8d03ac1476d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
   jumpForce: 9
   attackObj: {fileID: 1286861019539357236}
 --- !u!114 &1901039909
@@ -184,7 +185,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackObj: {fileID: 1286861019539357236}
   radiusAttack: 1.03
-  attackDamage: 0
+  attackDamage: 20
+--- !u!114 &4051009469339311690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2213098972862156442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb89b5e93139bbe448264c94113644fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 100
 --- !u!1 &2213098973138827245
 GameObject:
   m_ObjectHideFlags: 0

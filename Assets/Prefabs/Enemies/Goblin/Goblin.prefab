@@ -40,7 +40,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3326887724548281908}
   - component: {fileID: 1162715332043247392}
-  - component: {fileID: 792490448}
   m_Layer: 0
   m_Name: AttackZone
   m_TagString: Untagged
@@ -88,18 +87,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.47, y: 2.84}
   m_EdgeRadius: 0
---- !u!114 &792490448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699557665139493481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 020ee1dcdeffc16478782c9edd76598c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3612124003530591081
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,8 +100,6 @@ GameObject:
   - component: {fileID: 3612124003530591082}
   - component: {fileID: -1814511547806620536}
   - component: {fileID: 180207313}
-  - component: {fileID: 481787263}
-  - component: {fileID: 8591101446429654099}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Enemy
@@ -256,35 +241,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &481787263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3612124003530591081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90d368440a333e443a42bb9cc84272a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 100
---- !u!114 &8591101446429654099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3612124003530591081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f1f76a31f67e644cb14afa0b87c5d00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyAnimation: {fileID: 3612124003530591082}
-  attackObj: {fileID: 4982756509003228380}
-  radiusAttack: 0.92
-  attackDamage: 0
 --- !u!1 &7856876345276327235
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +251,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1084036492966410740}
   - component: {fileID: 4812401343770096409}
-  - component: {fileID: 1847910756}
   m_Layer: 0
   m_Name: DetectionZone
   m_TagString: Untagged
@@ -343,18 +298,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 11.41, y: 6.01}
   m_EdgeRadius: 0
---- !u!114 &1847910756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7856876345276327235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bedf52f7d451f544ea517ba1e2c937e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPosition: {fileID: 0}
-  enemyPosition: {fileID: 3612124003530591060}
-  speed: 1

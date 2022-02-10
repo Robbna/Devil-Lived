@@ -11,10 +11,6 @@ public class EnemyAttack_zone : MonoBehaviour
         isNearToAttack = false;
     }
 
-    private void Update()
-    {
-    }
-
     private void OnTriggerStay2D(Collider2D other)
     {
 

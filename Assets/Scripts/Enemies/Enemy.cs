@@ -38,7 +38,12 @@ public class Enemy : MonoBehaviour
                 goblinAnimation.SetBool("isRunning", true);
                 if (EnemyAttack_zone.isNearToAttack)
                 {
+                    goblinAnimation.SetBool("isNear", true);
                     goblinAnimation.SetTrigger("Attack");
+                }
+                else
+                {
+                    goblinAnimation.SetBool("isNear", false);
                 }
             }
             else

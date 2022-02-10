@@ -22,8 +22,7 @@ public class EnemyAttack : MonoBehaviour
             //Si el objeto colisionado tiene el tag "Enemy"
             if (collider.CompareTag("Player"))
             {
-                //collider.gameObject.GetComponent<Enemy>().Hitted(attackDamage);
-                Destroy(collider.gameObject);
+                collider.gameObject.GetComponent<Player>().Hitted(attackDamage);
             }
         }
     }
