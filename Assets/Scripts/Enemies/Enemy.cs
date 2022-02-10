@@ -8,13 +8,15 @@ public class Enemy : MonoBehaviour
     //Variables expuestas en el editor
     [SerializeField] private float currentHealth;
     //Variables necesarias para Enemy
-    private Animator goblinAnimation;
+    private Animator enemyAnimation;
     private SpriteRenderer spr;
-    private bool isAlive;
+    public static bool isAlive;
+    public static bool isAttacking;
 
     private void Start()
     {
-        goblinAnimation = GetComponent<Animator>();
+        isAttacking = false;
+        enemyAnimation = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         //Inicializamos isAlive a true, para que por cada instancia el personaje sea "Hitteable" (golpeable)
         isAlive = true;
@@ -23,35 +25,32 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
 
-        if (isAlive)
+
+        if (EnemyDetection_zone.isPlayerOnTheLeft)
         {
-            if (EnemyDetection_zone.isPlayerOnTheLeft)
-            {
-                spr.flipX = true;
-            }
-            else
-            {
-                spr.flipX = false;
-            }
-            if (EnemyDetection_zone.isNear)
-            {
-                goblinAnimation.SetBool("isRunning", true);
-                if (EnemyAttack_zone.isNearToAttack)
-                {
-                    goblinAnimation.SetBool("isNear", true);
-                    goblinAnimation.SetTrigger("Attack");
-                }
-                else
-                {
-                    goblinAnimation.SetBool("isNear", false);
-                }
-            }
-            else
-            {
-                goblinAnimation.SetBool("isRunning", false);
-            }
+            spr.flipX = true;
 
         }
+        else
+        {
+            spr.flipX = false;
+        }
+        if (Player.isAlive)
+        {
+            if (EnemyDetection_zone.isNear)
+            {
+                enemyAnimation.SetBool("isRunning", true);
+            }
+            else
+            {
+                enemyAnimation.SetBool("isRunning", false);
+            }
+        }
+        else
+        {
+            enemyAnimation.SetBool("isRunning", false);
+        }
+
 
 
         //Si la vida es MENOR o IGUAL a 0
@@ -67,7 +66,7 @@ public class Enemy : MonoBehaviour
     {
         if (isAlive)
         {
-            goblinAnimation.SetTrigger("Hitted");
+            enemyAnimation.SetTrigger("Hitted");
             currentHealth -= damageTaken;
         }
     }
@@ -75,8 +74,8 @@ public class Enemy : MonoBehaviour
     IEnumerator Death(float time)
     {
         isAlive = false;
-        goblinAnimation.SetBool("isDeath", true);
+        enemyAnimation.SetBool("isDeath", true);
         yield return new WaitForSeconds(time);
-        Destroy(gameObject);
+
     }
 }

@@ -5,22 +5,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float currentHealth;
-    private bool isAlive;
+    public static bool isAlive;
     private Animator playerAnimation;
 
     private void Start()
     {
         playerAnimation = GetComponent<Animator>();
-
         isAlive = true;
 
     }
 
     private void Update()
     {
+        print(currentHealth);
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(Death(2f));
         }
     }
 
@@ -32,4 +32,13 @@ public class Player : MonoBehaviour
             currentHealth -= damageTaken;
         }
     }
+    //***Corrutina para evento "Muerte", con parámetro de tiempo (float)
+    IEnumerator Death(float time)
+    {
+        isAlive = false;
+        playerAnimation.SetBool("isDeath", true);
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
+    }
+
 }

@@ -32,39 +32,41 @@ public class PlayerMovement : MonoBehaviour
     // ----------------
     private void Update()
     {
+        if (Player.isAlive)
+        {
+            //Si el jugador se mueve a la derecha
+            if (dirX > 0f)
+            {
+                spr.flipX = false;
+                RunAnimation(true);
+            }
+            //Si el jugador se mueve a la izquierda
+            else if (dirX < 0f)
+            {
+                spr.flipX = true;
+                RunAnimation(true);
+            }
+            //Si el jugador está quieto
+            else
+            {
+                RunAnimation(false);
+            }
 
-        //Si el jugador se mueve a la derecha
-        if (dirX > 0f)
-        {
-            spr.flipX = false;
-            RunAnimation(true);
-        }
-        //Si el jugador se mueve a la izquierda
-        else if (dirX < 0f)
-        {
-            spr.flipX = true;
-            RunAnimation(true);
-        }
-        //Si el jugador está quieto
-        else
-        {
-            RunAnimation(false);
+            //***CONDICIONES
+
+            //Si el jugador está tocando el suelo
+            if (mCheckGround.isGrounded == false)
+            {
+                RunAnimation(false);
+                JumpAnimation(true);
+            }
+            else
+            {
+                JumpAnimation(false);
+            }
+            Movement();
         }
 
-        //***CONDICIONES
-
-        //Si el jugador está tocando el suelo
-        if (mCheckGround.isGrounded == false)
-        {
-            RunAnimation(false);
-            JumpAnimation(true);
-        }
-        else
-        {
-            JumpAnimation(false);
-        }
-
-        Movement();
 
 
 

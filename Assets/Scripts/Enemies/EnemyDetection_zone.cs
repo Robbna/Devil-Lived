@@ -20,18 +20,32 @@ public class EnemyDetection_zone : MonoBehaviour
 
     private void Update()
     {
-        if (enemyPosition.position.x >= playerPosition.position.x)
+        if (Player.isAlive)
         {
-            isPlayerOnTheLeft = true;
+            if (enemyPosition.position.x >= playerPosition.position.x)
+            {
+                isPlayerOnTheLeft = true;
+            }
+            else
+            {
+                isPlayerOnTheLeft = false;
+            }
+            if (enemyPosition.position.x <= playerPosition.position.x)
+            {
+                isPlayerOnTheRight = true;
+            }
+            else
+            {
+                isPlayerOnTheRight = false;
+            }
+            playerDirection = playerPosition.position - enemyPosition.position;
         }
         else
         {
-            isPlayerOnTheRight = true;
+            speed = 0;
         }
 
 
-
-        playerDirection = playerPosition.position - enemyPosition.position;
     }
 
     private void OnTriggerStay2D(Collider2D other)
