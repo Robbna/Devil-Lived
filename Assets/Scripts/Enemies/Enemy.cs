@@ -3,23 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Enemie : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     //Variables expuestas en el editor
-    [SerializeField] private Animator goblinAnimation;
     [SerializeField] private float currentHealth;
-    //Variables necesarias para Enemie
+    //Variables necesarias para Enemy
+    private Animator goblinAnimation;
+    private SpriteRenderer spr;
     private bool isAlive;
 
     private void Start()
     {
+        goblinAnimation = GetComponent<Animator>();
+        spr = GetComponent<SpriteRenderer>();
         //Inicializamos isAlive a true, para que por cada instancia el personaje sea "Hitteable" (golpeable)
         isAlive = true;
-        goblinAnimation = GetComponent<Animator>();
     }
 
     private void Update()
     {
+
+        if (isAlive)
+        {
+            if (EnemyDetection_zone.isPlayerOnTheLeft)
+            {
+                spr.flipX = true;
+            }
+            else
+            {
+                spr.flipX = false;
+            }
+            if (EnemyDetection_zone.isNear)
+            {
+                goblinAnimation.SetBool("isRunning", true);
+                if (EnemyAttack_zone.isNearToAttack)
+                {
+                    goblinAnimation.SetTrigger("Attack");
+                }
+            }
+            else
+            {
+                goblinAnimation.SetBool("isRunning", false);
+            }
+
+        }
+
+
         //Si la vida es MENOR o IGUAL a 0
         if (currentHealth <= 0.0f)
         {

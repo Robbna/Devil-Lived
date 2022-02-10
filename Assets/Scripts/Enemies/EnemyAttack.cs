@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class EnemyAttack : MonoBehaviour
 {
+    [SerializeField] private Animator enemyAnimation;
     //Variables expuestas en el editor
     [SerializeField] private Transform attackObj;
     [SerializeField] private float radiusAttack;
@@ -19,13 +20,13 @@ public class PlayerAttack : MonoBehaviour
         foreach (Collider2D collider in listColliders)
         {
             //Si el objeto colisionado tiene el tag "Enemy"
-            if (collider.CompareTag("Enemy"))
+            if (collider.CompareTag("Player"))
             {
-                collider.gameObject.GetComponent<Enemy>().Hitted(attackDamage);
+                //collider.gameObject.GetComponent<Enemy>().Hitted(attackDamage);
+                Destroy(collider.gameObject);
             }
         }
     }
-
     //*** Método !PROVISIONAL para ver el rando de ataque
     private void OnDrawGizmos()
     {
@@ -33,4 +34,3 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.DrawWireSphere(attackObj.transform.position, radiusAttack);
     }
 }
-

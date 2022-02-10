@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     // ----------------
     private void Update()
     {
-        transform.Translate(Vector2.right * Input.GetAxisRaw("Horizontal") * speed);
+
         //Si el jugador se mueve a la derecha
         if (dirX > 0f)
         {
@@ -64,13 +64,32 @@ public class PlayerMovement : MonoBehaviour
             JumpAnimation(false);
         }
 
+        Movement();
+
+
+
+
+
+    }
+    // ---------------------------------------------------------------
+    //      Fixed Update, funcionamiento correcto de las físicas
+    // ---------------------------------------------------------------
+    private void FixedUpdate()
+    {
         //***INPUT
         if (Input.GetKeyDown(KeyCode.F))
         {
             Jump();
         }
 
+    }
+    // -----------------
+    //      Métodos
+    // -----------------
+    public void Movement()
+    {
         //***MOVIMIENTO DEL JUGADOR
+        transform.Translate(Vector2.right * Input.GetAxisRaw("Horizontal") * speed);
         if (mButtonManager.isHolding && mButtonManager.direction.Equals("left"))
         {
             dirX = -1.0f;
@@ -86,19 +105,7 @@ public class PlayerMovement : MonoBehaviour
             dirX = 0.0f;
         }
     }
-    // ---------------------------------------------------------------
-    //      Fixed Update, funcionamiento correcto de las físicas
-    // ---------------------------------------------------------------
-    private void FixedUpdate()
-    {
-        if (Input.GetButton("Jump"))
-        {
-            Jump();
-        }
-    }
-    // -----------------
-    //      Métodos
-    // -----------------
+
     public void ButtonPressed(bool isPressed)
     {
         //Si el jugador está presionando el botón, "isHolding" es true
