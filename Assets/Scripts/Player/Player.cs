@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float currentHealth;
+    [SerializeField] private int currentHealth;
+    [SerializeField] private HealthBar healthBar;
     public static bool isAlive;
     private Animator playerAnimation;
 
     private void Start()
     {
+        healthBar.SetMaxHealth(100);
         playerAnimation = GetComponent<Animator>();
         isAlive = true;
 
@@ -17,19 +20,20 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        print(currentHealth);
         if (currentHealth <= 0)
         {
             StartCoroutine(Death(2f));
         }
     }
 
-    public void Hitted(float damageTaken)
+    public void Hitted(int damageTaken)
     {
         if (isAlive)
         {
             playerAnimation.SetTrigger("Hitted");
             currentHealth -= damageTaken;
+            healthBar.SetHealth(currentHealth);
+
         }
     }
     //***Corrutina para evento "Muerte", con parámetro de tiempo (float)

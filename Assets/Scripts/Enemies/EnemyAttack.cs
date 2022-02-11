@@ -5,18 +5,20 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] private Animator enemyAnimation;
-    //Variables expuestas en el editor
-    private SpriteRenderer spr;
+    [SerializeField] private float attackDelay;
     [SerializeField] private Transform attackObj;
     [SerializeField] private float radiusAttack;
-    [SerializeField] private float attackDamage;
-    private float timer;
+    [SerializeField] private int attackDamage;
     [SerializeField] private float timeBetweenAttacks;
+    private float timer;
+    private SpriteRenderer spr;
+
     private void Start()
     {
         spr = GetComponent<SpriteRenderer>();
 
     }
+
     private void Update()
     {
         if (Player.isAlive)
@@ -30,7 +32,7 @@ public class EnemyAttack : MonoBehaviour
                     attackObj.localPosition = new Vector2(-1.03f, 0);
                     if (EnemyAttack_zone.isNearToAttack)
                     {
-                        Attack();
+                        StartCoroutine(Attack(attackDelay));
                     }
                 }
                 if (EnemyDetection_zone.isPlayerOnTheRight)
@@ -38,7 +40,7 @@ public class EnemyAttack : MonoBehaviour
                     attackObj.localPosition = new Vector2(1.03f, 0);
                     if (EnemyAttack_zone.isNearToAttack)
                     {
-                        Attack();
+                        StartCoroutine(Attack(attackDelay));
 
                     }
                 }
@@ -50,7 +52,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     //***Método de ataque principal
-    private void Attack()
+    IEnumerator Attack(float delay)
     {
         //Lista de colisiones con las que _colisionará_ el objeto "attackObj"
         Collider2D[] listColliders = Physics2D.OverlapCircleAll(attackObj.position, radiusAttack);
@@ -62,6 +64,7 @@ public class EnemyAttack : MonoBehaviour
             if (collider.CompareTag("Player"))
             {
                 enemyAnimation.SetTrigger("Attack");
+                yield return new WaitForSeconds(delay);
                 collider.gameObject.GetComponent<Player>().Hitted(attackDamage);
 
             }

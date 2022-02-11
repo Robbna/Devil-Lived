@@ -12,16 +12,20 @@ public class PlayerAttack : MonoBehaviour
     //***Método de ataque principal
     public void Attack()
     {
-        //Lista de colisiones con las que _colisionará_ el objeto "attackObj"
-        Collider2D[] listColliders = Physics2D.OverlapCircleAll(attackObj.position, radiusAttack);
-
-        //Recorremos la lista
-        foreach (Collider2D collider in listColliders)
+        if (Player.isAlive)
         {
-            //Si el objeto colisionado tiene el tag "Enemy"
-            if (collider.CompareTag("Enemy"))
+
+            //Lista de colisiones con las que _colisionará_ el objeto "attackObj"
+            Collider2D[] listColliders = Physics2D.OverlapCircleAll(attackObj.position, radiusAttack);
+
+            //Recorremos la lista
+            foreach (Collider2D collider in listColliders)
             {
-                collider.gameObject.GetComponent<Enemy>().Hitted(attackDamage);
+                //Si el objeto colisionado tiene el tag "Enemy"
+                if (collider.CompareTag("Enemy"))
+                {
+                    collider.gameObject.GetComponent<Enemy>().Hitted(attackDamage);
+                }
             }
         }
     }
