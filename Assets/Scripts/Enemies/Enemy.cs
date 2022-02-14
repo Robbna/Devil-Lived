@@ -7,26 +7,28 @@ public class Enemy : MonoBehaviour
 {
     //Variables expuestas en el editor
     [SerializeField] private float currentHealth;
-    //Variables necesarias para Enemy
+    [SerializeField] private Transform playerTransform;
+    //Componentes del enemigo
     private Animator enemyAnimation;
     private SpriteRenderer spr;
-    public static bool isAlive;
-    public static bool isAttacking;
+    //Variables necesarias para Enemy
+    public bool isAlive;
+    public bool isAttacking;
+    public bool viewRigh, viewLeft;
 
     private void Start()
     {
         isAttacking = false;
+        isAlive = true;
         enemyAnimation = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
-        //Inicializamos isAlive a true, para que por cada instancia el personaje sea "Hitteable" (golpeable)
-        isAlive = true;
     }
 
     private void Update()
     {
 
-
-        if (EnemyDetection_zone.isPlayerOnTheLeft)
+        //ROTACIÓN DEL ENEMIGO
+        if (transform.position.x > playerTransform.position.x)
         {
             spr.flipX = true;
 
@@ -34,21 +36,6 @@ public class Enemy : MonoBehaviour
         else
         {
             spr.flipX = false;
-        }
-        if (Player.isAlive)
-        {
-            if (EnemyDetection_zone.isNear)
-            {
-                enemyAnimation.SetBool("isRunning", true);
-            }
-            else
-            {
-                enemyAnimation.SetBool("isRunning", false);
-            }
-        }
-        else
-        {
-            enemyAnimation.SetBool("isRunning", false);
         }
 
 
@@ -78,4 +65,6 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(time);
 
     }
+
+    
 }

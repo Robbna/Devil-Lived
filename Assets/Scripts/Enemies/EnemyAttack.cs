@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] private Animator enemyAnimation;
+    [SerializeField] private Transform playerTransform;
     [SerializeField] private float attackDelay;
     [SerializeField] private Transform attackObj;
     [SerializeField] private float radiusAttack;
@@ -27,22 +28,20 @@ public class EnemyAttack : MonoBehaviour
             if (timer >= timeBetweenAttacks)
             {
 
-                if (EnemyDetection_zone.isPlayerOnTheLeft)
+                if (transform.position.x > playerTransform.position.x)
                 {
                     attackObj.localPosition = new Vector2(-1.03f, 0);
-                    if (EnemyAttack_zone.isNearToAttack)
-                    {
-                        StartCoroutine(Attack(attackDelay));
-                    }
+
+                    StartCoroutine(Attack(attackDelay));
+
                 }
-                if (EnemyDetection_zone.isPlayerOnTheRight)
+                if (transform.position.x < playerTransform.position.x)
                 {
                     attackObj.localPosition = new Vector2(1.03f, 0);
-                    if (EnemyAttack_zone.isNearToAttack)
-                    {
-                        StartCoroutine(Attack(attackDelay));
 
-                    }
+                    StartCoroutine(Attack(attackDelay));
+
+
                 }
                 timer = 0;
             }

@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class EnemyDetection_zone : MonoBehaviour
 {
+    [SerializeField] private GameObject enemy;
     [SerializeField] private Transform playerPosition;
-    [SerializeField] private Transform enemyPosition;
     [SerializeField] private float speed;
 
     private Vector2 playerDirection;
-    public static bool isNear;
-    public static bool isPlayerOnTheLeft, isPlayerOnTheRight;
+    private bool isNear;
 
     private void Start()
     {
@@ -22,27 +21,23 @@ public class EnemyDetection_zone : MonoBehaviour
     {
         if (Player.isAlive)
         {
-            if (enemyPosition.position.x >= playerPosition.position.x)
+            if (isNear)
             {
-                isPlayerOnTheLeft = true;
+                playerDirection = playerPosition.position - enemy.transform.position;
+                enemy.transform.Translate(playerDirection * speed);
+                GetComponentInParent<Animator>().SetBool("isRunning", true);
+
             }
             else
             {
-                isPlayerOnTheLeft = false;
+                GetComponentInParent<Animator>().SetBool("isRunning", false);
+
             }
-            if (enemyPosition.position.x <= playerPosition.position.x)
-            {
-                isPlayerOnTheRight = true;
-            }
-            else
-            {
-                isPlayerOnTheRight = false;
-            }
-            playerDirection = playerPosition.position - enemyPosition.position;
         }
         else
         {
-            speed = 0;
+            GetComponentInParent<Animator>().SetBool("isRunning", false);
+            speed = 0f;
         }
 
 
@@ -53,7 +48,6 @@ public class EnemyDetection_zone : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            enemyPosition.Translate(playerDirection * speed);
             isNear = true;
         }
 

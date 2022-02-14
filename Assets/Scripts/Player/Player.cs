@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         isAlive = false;
         playerAnimation.SetBool("isDeath", true);
         yield return new WaitForSeconds(time);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
 }
