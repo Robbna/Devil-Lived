@@ -199,10 +199,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   playerTransform: {fileID: 0}
-  isAlive: 0
-  isAttacking: 0
-  viewRigh: 0
-  viewLeft: 0
 --- !u!114 &464315759
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int currentHealth;
     [SerializeField] private HealthBar healthBar;
+    [Header("Tiempos de carga")]
+    [SerializeField] private float timeDeath;
+    [SerializeField] private float timeToRespawn;
     public static bool isAlive;
     private Animator playerAnimation;
 
@@ -22,7 +25,9 @@ public class Player : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            StartCoroutine(Death(2f));
+            StartCoroutine(Death(timeDeath));
+            StartCoroutine(Spawn(timeToRespawn));
+
         }
     }
 
@@ -43,6 +48,13 @@ public class Player : MonoBehaviour
         playerAnimation.SetBool("isDeath", true);
         yield return new WaitForSeconds(time);
         gameObject.SetActive(false);
+
+    }
+
+    private IEnumerator Spawn(float time)
+    {
+        yield return new WaitForSeconds(time);
+        mScenes.RestartLevel();
     }
 
 }

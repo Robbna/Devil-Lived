@@ -200,6 +200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   healthBar: {fileID: 0}
+  timeDeath: 3
+  timeToRespawn: 2
 --- !u!1 &2213098973138827245
 GameObject:
   m_ObjectHideFlags: 0
