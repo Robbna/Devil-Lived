@@ -12,9 +12,9 @@ public class Enemy : MonoBehaviour
     private Animator enemyAnimation;
     private SpriteRenderer spr;
     //Variables necesarias para Enemy
-    public bool isAlive;
-    public bool isAttacking;
-    public bool viewRigh, viewLeft;
+    private bool isAlive;
+    private bool isAttacking;
+    private bool viewRigh, viewLeft;
 
     private void Start()
     {
@@ -66,5 +66,5 @@ public class Enemy : MonoBehaviour
 
     }
 
-    
+
 }

@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.14795852, a: 1}
+  m_Color: {r: 0, g: 0.745283, b: 0.11106186, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1395,8 +1395,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -246.70905, y: 186.9193}
-  m_SizeDelta: {x: 115.6134, y: 7.9415}
+  m_AnchoredPosition: {x: -246.70905, y: 192.24052}
+  m_SizeDelta: {x: 115.6134, y: 2.3142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3274888176391129794
 MonoBehaviour:
@@ -1461,4 +1461,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753db1046573b1a4f95965cd7866e5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  slider: {fileID: 3274888176391129794}
