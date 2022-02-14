@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        transform.position = new Vector3(-31.9f, 79.5f, 0f);
         healthBar.SetMaxHealth(100);
         playerAnimation = GetComponent<Animator>();
         isAlive = true;
@@ -57,4 +58,12 @@ public class Player : MonoBehaviour
         mScenes.RestartLevel();
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Fall"))
+        {
+            currentHealth = 0;
+            healthBar.SetHealth(0);
+        }
+    }
 }
