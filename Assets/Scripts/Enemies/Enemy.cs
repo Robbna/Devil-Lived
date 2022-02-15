@@ -12,16 +12,16 @@ public class Enemy : MonoBehaviour
     private Animator enemyAnimation;
     private SpriteRenderer spr;
     //Variables necesarias para Enemy
-    private bool isAlive;
-    private bool isAttacking;
+    public bool isAlive;
     private bool viewRigh, viewLeft;
+    private bool doOnce;
 
     private void Start()
     {
-        isAttacking = false;
         isAlive = true;
         enemyAnimation = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
+        doOnce = false;
     }
 
     private void Update()
@@ -45,6 +45,13 @@ public class Enemy : MonoBehaviour
         {
             //Inicia una corrutina que ejecuta Death() al tiempo que especifiquemos
             StartCoroutine(Death(2f));
+
+            if (!doOnce)
+            {
+                Player.enemyDefeat++;
+                doOnce = true;
+            }
+
         }
     }
 
@@ -60,9 +67,10 @@ public class Enemy : MonoBehaviour
     //***Corrutina para evento "Muerte", con parámetro de tiempo (float)
     IEnumerator Death(float time)
     {
-        isAlive = false;
         enemyAnimation.SetBool("isDeath", true);
+        isAlive = false;
         yield return new WaitForSeconds(time);
+        Destroy(gameObject);
 
     }
 

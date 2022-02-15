@@ -197,8 +197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d368440a333e443a42bb9cc84272a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 100
+  currentHealth: 50
   playerTransform: {fileID: 0}
+  isAlive: 0
 --- !u!114 &464315759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +219,7 @@ MonoBehaviour:
   radiusAttack: 1.09
   attackDamage: 10
   timeBetweenAttacks: 0.65
+  forceScaleAttack: 5
 --- !u!1 &7165165577992809504
 GameObject:
   m_ObjectHideFlags: 0

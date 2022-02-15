@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     //Variables necesarias para PlayerMovement
     private bool isHolding;
     private float dirX, dirY;
+    public static bool isLeft, isRight;
     // ---------------
     //      Start
     // ---------------
@@ -37,12 +38,14 @@ public class PlayerMovement : MonoBehaviour
             //Si el jugador se mueve a la derecha
             if (dirX > 0f)
             {
+                isRight = true;
                 spr.flipX = false;
                 RunAnimation(true);
             }
             //Si el jugador se mueve a la izquierda
             else if (dirX < 0f)
             {
+                isLeft = true;
                 spr.flipX = true;
                 RunAnimation(true);
             }
@@ -96,11 +99,13 @@ public class PlayerMovement : MonoBehaviour
         {
             dirX = -1.0f;
             transform.Translate(Vector2.right * dirX * speed);
+            attackObj.localPosition = new Vector2(-1.03f, 0);
         }
         else if (mButtonManager.isHolding && mButtonManager.direction.Equals("right"))
         {
             dirX = 1.0f;
             transform.Translate(Vector2.right * dirX * speed);
+            attackObj.localPosition = new Vector2(1.03f, 0);
         }
         else
         {

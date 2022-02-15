@@ -8,6 +8,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform attackObj;
     [SerializeField] private float radiusAttack;
     [SerializeField] private float attackDamage;
+    [SerializeField] private float forceScaleAttack;
+
 
     //***Método de ataque principal
     public void Attack()
@@ -25,6 +27,15 @@ public class PlayerAttack : MonoBehaviour
                 if (collider.CompareTag("Enemy"))
                 {
                     collider.gameObject.GetComponent<Enemy>().Hitted(attackDamage);
+                    if(collider.transform.position.x > transform.position.x)
+                    {
+                        collider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * forceScaleAttack, ForceMode2D.Impulse);
+                    }
+                    if (collider.transform.position.x < transform.position.x)
+                    {
+                        collider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.left * forceScaleAttack, ForceMode2D.Impulse);
+                    }
+
                 }
             }
         }

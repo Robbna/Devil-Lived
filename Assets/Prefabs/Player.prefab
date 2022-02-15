@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  jumpForce: 9
+  jumpForce: 6
   attackObj: {fileID: 1286861019539357236}
 --- !u!114 &1901039909
 MonoBehaviour:
@@ -186,6 +186,7 @@ MonoBehaviour:
   attackObj: {fileID: 1286861019539357236}
   radiusAttack: 1.03
   attackDamage: 20
+  forceScaleAttack: 6
 --- !u!114 &4051009469339311690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   healthBar: {fileID: 0}
+  enemyBar: {fileID: 0}
   timeDeath: 3
   timeToRespawn: 2
 --- !u!1 &2213098973138827245

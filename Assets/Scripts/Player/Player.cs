@@ -7,16 +7,19 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int currentHealth;
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private EnemyBar enemyBar;
     [Header("Tiempos de carga")]
     [SerializeField] private float timeDeath;
     [SerializeField] private float timeToRespawn;
     public static bool isAlive;
     private Animator playerAnimation;
+    public static int enemyDefeat;
 
     private void Start()
     {
         transform.position = new Vector3(-31.9f, 79.5f, 0f);
         healthBar.SetMaxHealth(100);
+        enemyDefeat = 0;
         playerAnimation = GetComponent<Animator>();
         isAlive = true;
 

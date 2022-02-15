@@ -135,8 +135,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000038147, y: 67}
-  m_SizeDelta: {x: 368.3948, y: 178.3886}
+  m_AnchoredPosition: {x: -0.0000038146973, y: 20.1}
+  m_SizeDelta: {x: 295.7831, y: 118.8994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &258726004511478031
 CanvasRenderer:
@@ -210,8 +210,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.4132, y: -0.4227}
-  m_SizeDelta: {x: 308.3739, y: 119.8835}
+  m_AnchoredPosition: {x: -0.000010073, y: -0.00000038743}
+  m_SizeDelta: {x: 210.0183, y: 79.1028}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &258726004858984799
 CanvasRenderer:
@@ -254,7 +254,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: dsadsadasdasdasdasd
+  m_Text: '"Casa del guadabosques"'
 --- !u!1 &258726005105093580
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float radiusAttack;
     [SerializeField] private int attackDamage;
     [SerializeField] private float timeBetweenAttacks;
+    [SerializeField] private float forceScaleAttack;
     private float timer;
     private SpriteRenderer spr;
 
@@ -22,29 +23,33 @@ public class EnemyAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Player.isAlive)
+        if (GetComponent<Enemy>().isAlive)
         {
-            timer += Time.deltaTime;
-            if (timer >= timeBetweenAttacks)
+            if (Player.isAlive)
             {
-
-                if (transform.position.x > playerTransform.position.x)
+                timer += Time.deltaTime;
+                if (timer >= timeBetweenAttacks)
                 {
-                    attackObj.localPosition = new Vector2(-1.03f, 0);
 
-                    StartCoroutine(Attack(attackDelay));
+                    if (transform.position.x > playerTransform.position.x)
+                    {
+                        attackObj.localPosition = new Vector2(-1.03f, 0);
 
+                        StartCoroutine(Attack(attackDelay));
+
+                    }
+                    if (transform.position.x < playerTransform.position.x)
+                    {
+                        attackObj.localPosition = new Vector2(1.03f, 0);
+
+                        StartCoroutine(Attack(attackDelay));
+
+
+                    }
+                    timer = 0;
                 }
-                if (transform.position.x < playerTransform.position.x)
-                {
-                    attackObj.localPosition = new Vector2(1.03f, 0);
-
-                    StartCoroutine(Attack(attackDelay));
-
-
-                }
-                timer = 0;
             }
+
         }
 
 
@@ -64,6 +69,14 @@ public class EnemyAttack : MonoBehaviour
             {
                 enemyAnimation.SetTrigger("Attack");
                 yield return new WaitForSeconds(delay);
+                if (PlayerMovement.isLeft)
+                {
+                    collider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * forceScaleAttack, ForceMode2D.Impulse);
+                }
+                if (PlayerMovement.isRight)
+                {
+                    collider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.left * forceScaleAttack, ForceMode2D.Impulse);
+                }
                 collider.gameObject.GetComponent<Player>().Hitted(attackDamage);
 
             }

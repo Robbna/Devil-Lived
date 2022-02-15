@@ -19,26 +19,34 @@ public class EnemyDetection_zone : MonoBehaviour
 
     private void Update()
     {
-        if (Player.isAlive)
+        if (GetComponentInParent<Enemy>().isAlive)
         {
-            if (isNear)
+            if (Player.isAlive)
             {
-                playerDirection = playerPosition.position - enemy.transform.position;
-                enemy.transform.Translate(playerDirection * speed);
-                GetComponentInParent<Animator>().SetBool("isRunning", true);
+                if (isNear)
+                {
+                    playerDirection = playerPosition.position - enemy.transform.position;
+                    enemy.transform.Translate(playerDirection * speed);
+                    GetComponentInParent<Animator>().SetBool("isRunning", true);
 
+                }
+                else
+                {
+                    GetComponentInParent<Animator>().SetBool("isRunning", false);
+
+                }
             }
             else
             {
                 GetComponentInParent<Animator>().SetBool("isRunning", false);
-
+                speed = 0f;
             }
         }
         else
         {
-            GetComponentInParent<Animator>().SetBool("isRunning", false);
-            speed = 0f;
+            //speed = 0f;
         }
+
 
 
     }
