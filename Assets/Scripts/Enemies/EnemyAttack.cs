@@ -12,12 +12,15 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private int attackDamage;
     [SerializeField] private float timeBetweenAttacks;
     [SerializeField] private float forceScaleAttack;
+
+    private AudioSource audioSword;
     private float timer;
     private SpriteRenderer spr;
 
     private void Start()
     {
         spr = GetComponent<SpriteRenderer>();
+        audioSword = GetComponent<AudioSource>();
 
     }
 
@@ -78,7 +81,7 @@ public class EnemyAttack : MonoBehaviour
                     collider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.left * forceScaleAttack, ForceMode2D.Impulse);
                 }
                 collider.gameObject.GetComponent<Player>().Hitted(attackDamage);
-
+                audioSword.Play();
             }
         }
     }

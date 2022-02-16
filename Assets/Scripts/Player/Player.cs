@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public static bool isAlive;
     private Animator playerAnimation;
     public static int enemyDefeat;
+    [SerializeField] private AudioSource deathSound;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            deathSound.Play();
             StartCoroutine(Death(timeDeath));
             StartCoroutine(Spawn(timeToRespawn));
 

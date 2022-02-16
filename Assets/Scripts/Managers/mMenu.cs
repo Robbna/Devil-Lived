@@ -8,9 +8,11 @@ public class mMenu : MonoBehaviour
     [Header("Objetos del menu")]
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject optionsMenu;
+    private AudioSource musicMenu;
 
     private void Start()
     {
+        musicMenu = GetComponent<AudioSource>();
         optionsMenu.SetActive(false);
         mainMenu.SetActive(true);
     }

@@ -9,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float radiusAttack;
     [SerializeField] private float attackDamage;
     [SerializeField] private float forceScaleAttack;
+    [SerializeField] private AudioSource audioSword;
+
 
 
     //***Método de ataque principal
@@ -27,7 +29,7 @@ public class PlayerAttack : MonoBehaviour
                 if (collider.CompareTag("Enemy"))
                 {
                     collider.gameObject.GetComponent<Enemy>().Hitted(attackDamage);
-                    if(collider.transform.position.x > transform.position.x)
+                    if (collider.transform.position.x > transform.position.x)
                     {
                         collider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * forceScaleAttack, ForceMode2D.Impulse);
                     }
@@ -38,6 +40,12 @@ public class PlayerAttack : MonoBehaviour
 
                 }
             }
+            if (mCheckGround.isGrounded)
+            {
+
+                audioSword.Play();
+            }
+
         }
     }
 
