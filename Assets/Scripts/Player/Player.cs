@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int currentHealth;
     [SerializeField] private HealthBar healthBar;
-    [SerializeField] private EnemyBar enemyBar;
     [Header("Tiempos de carga")]
     [SerializeField] private float timeDeath;
     [SerializeField] private float timeToRespawn;

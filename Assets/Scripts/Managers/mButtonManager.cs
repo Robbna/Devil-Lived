@@ -13,6 +13,7 @@ public class mButtonManager : MonoBehaviour
         if (isHolding)
         {
             isHolding = true;
+            
         }
         else
         {
