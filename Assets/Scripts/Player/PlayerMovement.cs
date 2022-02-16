@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     // ---------------
     private void Start()
     {
-        speed *= Time.deltaTime;
+        speed *= Time.fixedDeltaTime;
         rg = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
         playerAnimator = GetComponent<Animator>();
@@ -53,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 RunAnimation(false);
+
+
             }
 
             //***CONDICIONES
@@ -67,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 JumpAnimation(false);
             }
-            Movement();
+
         }
 
 
@@ -82,10 +84,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //***INPUT
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Jump();
-        }
+        Movement();
 
     }
     // -----------------
@@ -94,17 +93,16 @@ public class PlayerMovement : MonoBehaviour
     public void Movement()
     {
         //***MOVIMIENTO DEL JUGADOR
-        transform.Translate(Vector2.right * Input.GetAxisRaw("Horizontal") * speed);
         if (mButtonManager.isHolding && mButtonManager.direction.Equals("left"))
         {
             dirX = -1.0f;
-            transform.Translate(Vector2.right * dirX * speed);
+            rg.MovePosition(Vector2.left * dirX * speed);
             attackObj.localPosition = new Vector2(-1.03f, 0);
         }
         else if (mButtonManager.isHolding && mButtonManager.direction.Equals("right"))
         {
             dirX = 1.0f;
-            transform.Translate(Vector2.right * dirX * speed);
+            rg.MovePosition(Vector2.right * dirX * speed);
             attackObj.localPosition = new Vector2(1.03f, 0);
         }
         else
