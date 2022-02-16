@@ -8,11 +8,28 @@ public class mMessage : MonoBehaviour
     [SerializeField] private string text;
     [SerializeField] private GameObject canvas;
     [SerializeField] private Text textBox;
+    [SerializeField] private bool isCounter;
 
     private void Start()
     {
         canvas.SetActive(false);
         textBox.text = text;
+    }
+
+    private void Update()
+    {
+        if (isCounter)
+        {
+            if (Player.enemyDefeat < 10)
+            {
+                textBox.text = "\"No has matado suficiente\"";
+            }
+            else
+            {
+                textBox.text = "\"Prepárate\"";
+            }
+
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)

@@ -30,6 +30,7 @@ public class mMenu : MonoBehaviour
 
     public void startNewGame()
     {
+        mainMenu.SetActive(false);
         StartCoroutine(loadNewGame());
     }
 

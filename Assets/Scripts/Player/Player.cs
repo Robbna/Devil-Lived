@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        transform.position = new Vector3(-31.9f, 79.5f, 0f);
         healthBar.SetMaxHealth(100);
         enemyDefeat = 0;
         playerAnimation = GetComponent<Animator>();
@@ -31,6 +30,11 @@ public class Player : MonoBehaviour
             StartCoroutine(Death(timeDeath));
             StartCoroutine(Spawn(timeToRespawn));
 
+        }
+
+        if (enemyDefeat >= 10)
+        {
+            mTeleport.isEnabled = true;
         }
     }
 
