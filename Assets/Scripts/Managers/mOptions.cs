@@ -23,11 +23,6 @@ public class mOptions : MonoBehaviour
         optionsPanel.SetActive(true);
     }
 
-    public void LoadMainMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
-
     public void BackGame()
     {
         Time.timeScale = 1f;

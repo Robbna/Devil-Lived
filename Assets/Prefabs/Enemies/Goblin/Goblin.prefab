@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 3612124003530591081}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.43, y: 1.39, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5506, y: 2.5506, z: 2.5506}
   m_Children:
   - {fileID: 4982756509003228380}
   - {fileID: 3526428929774012997}
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d368440a333e443a42bb9cc84272a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 50
+  currentHealth: 100
   playerTransform: {fileID: 0}
   isAlive: 0
 --- !u!114 &464315759
@@ -218,7 +218,7 @@ MonoBehaviour:
   attackDelay: 0.6
   attackObj: {fileID: 4982756509003228380}
   radiusAttack: 1.09
-  attackDamage: 10
+  attackDamage: 20
   timeBetweenAttacks: 0.65
   forceScaleAttack: 5
 --- !u!82 &5511716549975962473
@@ -389,4 +389,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 3612124003530591081}
   playerPosition: {fileID: 0}
-  speed: 0.3
+  speed: 1

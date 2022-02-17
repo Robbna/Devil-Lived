@@ -7,33 +7,25 @@ public class mMenu : MonoBehaviour
 {
     [Header("Objetos del menu")]
     [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject optionsMenu;
     private AudioSource musicMenu;
 
     private void Start()
     {
+        mFadeController.FadeIn();
         musicMenu = GetComponent<AudioSource>();
-        optionsMenu.SetActive(false);
         mainMenu.SetActive(true);
-    }
-
-    public void loadOptionMenu()
-    {
-        mainMenu.SetActive(false);
-        optionsMenu.SetActive(true);
-
     }
     public void loadMainMenu()
     {
-        optionsMenu.SetActive(false);
         mainMenu.SetActive(true);
 
     }
 
     public void startNewGame()
     {
-        mainMenu.SetActive(false);
-        StartCoroutine(loadNewGame());
+        mFadeController.FadeOut();
+        StartCoroutine(loadScene());
+
     }
 
     public void exitGame()
@@ -41,10 +33,10 @@ public class mMenu : MonoBehaviour
         Application.Quit();
     }
 
-
-    private IEnumerator loadNewGame()
+    IEnumerator loadScene()
     {
-        yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("Level1");
+        int s = SceneManager.GetActiveScene().buildIndex;
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(s + 1);
     }
 }

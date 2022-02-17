@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a749bf8027b51d4fad8d03ac1476d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 8
   jumpForce: 5
   attackObj: {fileID: 1286861019539357236}
 --- !u!114 &1901039909
@@ -187,8 +187,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackObj: {fileID: 1286861019539357236}
   radiusAttack: 1.03
-  attackDamage: 50
+  attackDamage: 30
   forceScaleAttack: 6
+  audioSword: {fileID: 1557389158689106850}
 --- !u!114 &4051009469339311690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,8 +204,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   healthBar: {fileID: 0}
-  timeDeath: 3
-  timeToRespawn: 2
+  timeDeath: 10
+  timeToRespawn: 20
+  deathSound: {fileID: 869076102}
 --- !u!82 &1557389158689106850
 AudioSource:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class mTeleport : MonoBehaviour
 {
     [HideInInspector] public static bool isEnabled;
-    [SerializeField] private float time;
 
     private void Start()
     {
@@ -19,13 +18,14 @@ public class mTeleport : MonoBehaviour
         {
             if (isEnabled)
             {
-                StartCoroutine(startTeleport(time));
+                StartCoroutine(startTeleport(1.5f));
             }
         }
     }
 
     IEnumerator startTeleport(float time)
     {
+        mFadeController.FadeOut();
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene("Level2");
     }

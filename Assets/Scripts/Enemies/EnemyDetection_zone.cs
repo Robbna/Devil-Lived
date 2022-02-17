@@ -13,7 +13,6 @@ public class EnemyDetection_zone : MonoBehaviour
 
     private void Start()
     {
-        speed *= Time.deltaTime;
         isNear = false;
     }
 
@@ -26,7 +25,7 @@ public class EnemyDetection_zone : MonoBehaviour
                 if (isNear)
                 {
                     playerDirection = playerPosition.position - enemy.transform.position;
-                    enemy.transform.Translate(playerDirection * speed);
+                    enemy.transform.Translate(playerDirection * speed * Time.deltaTime);
                     GetComponentInParent<Animator>().SetBool("isRunning", true);
 
                 }
@@ -41,10 +40,6 @@ public class EnemyDetection_zone : MonoBehaviour
                 GetComponentInParent<Animator>().SetBool("isRunning", false);
                 speed = 0f;
             }
-        }
-        else
-        {
-            //speed = 0f;
         }
 
 

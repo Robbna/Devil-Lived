@@ -62,7 +62,9 @@ public class Player : MonoBehaviour
 
     private IEnumerator Spawn(float time)
     {
+        
         yield return new WaitForSeconds(time);
+        mFadeController.FadeOut();
         mScenes.RestartLevel();
     }
 
