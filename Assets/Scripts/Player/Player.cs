@@ -29,8 +29,7 @@ public class Player : MonoBehaviour
         if (currentHealth <= 0)
         {
             deathSound.Play();
-            StartCoroutine(Death(timeDeath));
-            StartCoroutine(Spawn(timeToRespawn));
+            StartCoroutine(Death());
 
         }
 
@@ -51,21 +50,16 @@ public class Player : MonoBehaviour
         }
     }
     //***Corrutina para evento "Muerte", con parámetro de tiempo (float)
-    IEnumerator Death(float time)
+    IEnumerator Death()
     {
         isAlive = false;
         playerAnimation.SetBool("isDeath", true);
-        yield return new WaitForSeconds(time);
-        gameObject.SetActive(false);
-
-    }
-
-    private IEnumerator Spawn(float time)
-    {
-        
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(2f);
         mFadeController.FadeOut();
+        yield return new WaitForSeconds(2f);
+        gameObject.SetActive(false);
         mScenes.RestartLevel();
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)

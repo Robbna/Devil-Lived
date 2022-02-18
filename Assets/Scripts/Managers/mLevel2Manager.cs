@@ -19,7 +19,6 @@ public class mLevel2Manager : MonoBehaviour
     {
         if (Player.enemyDefeat >= 3)
         {
-            Time.timeScale = 0;
             playerHUD.SetActive(false);
             optionsHUD.SetActive(false);
             panelGanar.SetActive(true);

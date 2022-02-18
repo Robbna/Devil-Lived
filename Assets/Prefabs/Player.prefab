@@ -156,7 +156,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &2213098972862156641
 MonoBehaviour:
@@ -204,8 +204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   healthBar: {fileID: 0}
-  timeDeath: 10
-  timeToRespawn: 20
+  timeDeath: 5
+  timeToRespawn: 7
   deathSound: {fileID: 869076102}
 --- !u!82 &1557389158689106850
 AudioSource:

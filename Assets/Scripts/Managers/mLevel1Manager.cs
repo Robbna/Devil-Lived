@@ -9,18 +9,4 @@ public class mLevel1Manager : MonoBehaviour
     {
         mFadeController.FadeIn();
     }
-
-    public void loadMainMenu()
-    {
-        //mFadeController.FadeOut();
-        StartCoroutine(loadScene(1.5f));
-
-
-    }
-
-    IEnumerator loadScene(float t)
-    {
-        yield return new WaitForSeconds(t);
-        SceneManager.LoadScene(0);
-    }
 }

@@ -32,5 +32,11 @@ public class mOptions : MonoBehaviour
 
 
     }
+    public void exitGame()
+    {
+        Application.Quit();
+
+
+    }
 
 }
