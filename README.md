@@ -18,7 +18,8 @@
 </p>
 
 # Devil Lived
-_Devil Lived es un videojuego 2D de exploración y aventuras muy influido por juegos como
+
+_Devil Lived es un videojuego 2D para **dispositivos móviles** de exploración y aventuras muy influido por juegos como
 Hollow Knight o Dark Souls. Se podría definir como un videojuego del género Metroidvania
 con mecánicas y arte estilo Souls_
 ## Unity3D version :warning:
